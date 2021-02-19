@@ -1,0 +1,47 @@
+// POINT DISTANCE CONDITIONAL
+pointa=thisComp.layer("Shape Layer 1").transform.position; // defines point A
+pointb=thisComp.layer("Shape Layer 2").transform.position; // defines point B
+ypos=transform.yPosition;  // defines var "ypos" as default y position
+dist=length(pointa,pointb);  // finds the distance between point A and point B
+if(dist > 300) [ypos] else [ypos-dist];  // subtracts the disctance of A and B from ypos if distance of A and B is NOT greater than 300
+
+
+// POINT DISTANCE CONDITION WITH TWO OUTPUTS
+pointa = transform.position;                    				 //defines point a
+pointb = thisComp.layer("attacker").transform.position;    //defines point b
+dist = length(pointa,pointb);              				  //measures distance between point a and point b
+s1o = transform.scale[0];                					//defines original scale x as s1o variable
+s2o=transform.scale[1];                   				 //defines original scale y as s2o variable
+s1= s1o+dist;                      					  //creates variable s1 as the original scale x plus distance between a and b
+s2=s2o+dist;                        					//creates variable s2 as the original scale y plus distance between a and b
+reals1=linear(s1,100,400,0,100);           		 //defines reals1 as a linear expression that scales x between 0 and 100 when s1 is between 100 and 400 pixels away
+reals2=linear(s2,100,400,0,100);          		  //same as above but for y   
+[reals1,reals2]                       					//outputs final x and y values
+
+// TEXT EXPRESSION (include punctuation)
+d=Math.round(thisComp.layer("Tether value UI controller").effect("tether dollar")("Slider"));   //sets d to slider value
+c=Math.round(thisComp.layer("Tether value UI controller").effect("tether cents")("Slider"));   // sets c to other slider value
+d + "." + c   //outputs d.c in text
+
+// TEXT EXPRESSION CONDITIONAL
+d=Math.round(thisComp.layer("Tether value UI controller").effect("tether dollar")("Slider"));  //sets d to slider value
+c=Math.round(thisComp.layer("Tether value UI controller").effect("tether cents")("Slider"));   // sets c to other slider value
+if(d<1) c else c+100              //outputs c if d<1, and otherwise outputs c+100       
+
+// SET SPECIFIC NUMBER OF DECIMALS FOR SLIDER-LINKED NUMBER
+thisComp.layer("Tether value UI controller").effect("tether dollar")("Slider").value.toFixed(2);  //number in brackets is number of decimals
+
+// OR:
+n = effect("Slider Control")("Slider");
+d = 10;  // set decimal places (tenths, hundredths, etc.)
+Math.round(n*d)/d
+
+
+// RANDOM COLOR BETWEEN COLORS
+colors = [[250/255, 223/255, 73/255, 1], [40/255, 176/255, 231/255, 1], [250/255, 68/255, 83/255, 1], [62/255, 210/255, 89/255, 1]]; posterizeTime(12); colors[Math.floor(random(4))];
+
+
+// MOVE SAME AS PARENT BUT ON A DELAY:
+delay = .2;
+parent.fromWorld(toWorld(anchorPoint,time-delay))
+// also: http://www.motionscript.com/mastering-expressions/follow-the-leader.html 
