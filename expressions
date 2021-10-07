@@ -45,3 +45,10 @@ colors = [[250/255, 223/255, 73/255, 1], [40/255, 176/255, 231/255, 1], [250/255
 delay = .2;
 parent.fromWorld(toWorld(anchorPoint,time-delay))
 // also: http://www.motionscript.com/mastering-expressions/follow-the-leader.html 
+
+// CREATE FAKE 3D EFFECT WITH MANY LAYER SHAPES IN 3D, EACH 1 PIXEL BEHIND THE PREVIOUS
+// this goes on position keyframe of each layer behind the top
+px = thisComp.layer(index-1).transform.position[0];
+py = thisComp.layer(index-1).transform.position[1];
+pz = thisComp.layer(index-1).transform.position[2] + 1;
+[px,py,pz]
